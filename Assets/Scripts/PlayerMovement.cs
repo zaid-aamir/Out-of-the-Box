@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed;
 
+    private Rigidbody2D rb;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -25,14 +28,20 @@ public class PlayerMovement : MonoBehaviour
         //Move player using new vector2
         transform.Translate(moveDirection * speed * Time.deltaTime);
 
-        //Add player borders
-        if (transform.position.y > 4.5)
-            transform.position = new Vector2(transform.position.x, 4.5f);
-        if (transform.position.y < -4.5)
-            transform.position = new Vector2(transform.position.x, -4.5f);
-        if (transform.position.x > 11.5)
-            transform.position = new Vector2(11.5f, transform.position.y);
-        if (transform.position.x < -11.5)
-            transform.position = new Vector2(-11.5f, transform.position.y);
+        // Add player borders
+        float x = transform.position.x;
+        float y = transform.position.y;
+
+        x = System.Math.Min(11.5f, System.Math.Max(-11.5f, x));
+        y = System.Math.Min(4.5f, System.Math.Max(-4.5f, y));
+
+        transform.position = new Vector2(x, y);
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("death"))
+        {
+            SceneManager.LoadScene("DeathScreen");
+        }
     }
 }
