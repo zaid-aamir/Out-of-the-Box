@@ -4,5 +4,6 @@ using UnityEngine;
 
 public class LevelNumber : MonoBehaviour
 {
-    public static int playerScore = 1;
+    //Static int to keep player level consistent in changes.
+    public static int playerLevel = 1;
 }

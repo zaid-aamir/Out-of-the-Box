@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
+    //Initializing speed variable
     [SerializeField] private float speed;
 
     private Rigidbody2D rb;
@@ -37,10 +38,14 @@ public class PlayerMovement : MonoBehaviour
 
         transform.position = new Vector2(x, y);
     }
+
+    //Checks for any collision
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        //Checks if collision was with something deadly
         if (collision.gameObject.CompareTag("death"))
         {
+            //If yes, then load deathscreen.
             SceneManager.LoadScene("DeathScreen");
         }
     }
