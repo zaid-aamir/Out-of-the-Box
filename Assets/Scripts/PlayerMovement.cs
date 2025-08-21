@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
         float x = transform.position.x;
         float y = transform.position.y;
 
-        x = System.Math.Min(11.5f, System.Math.Max(-11.5f, x));
+        x = System.Math.Min(11f, System.Math.Max(-11f, x));
         y = System.Math.Min(4.5f, System.Math.Max(-4.5f, y));
 
         transform.position = new Vector2(x, y);

@@ -10,5 +10,8 @@ public class RestartButton : MonoBehaviour
     {
         //Loads first level
         SceneManager.LoadScene("Level 1");
+
+        //Resets level count
+        LevelNumber.playerLevel = 1;
     }
 }
